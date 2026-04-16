@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>jrnglo</title>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f7fc;
+      color: #1e2a3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* ========== NAVBAR (brand left, items right) ========== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #f4f7fc;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(94,151,206,0.2);
+    }
+
+    #navbar-animmenu {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 1.5rem;
+    }
+
+    .main-navbar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    /* brand item stays on left */
+    .main-navbar li.brand-nav {
+      margin-right: auto;
+    }
+
+    .main-navbar li {
+      position: relative;
+      z-index: 2;
+    }
+
+    .main-navbar li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #2c3e50;
+      text-decoration: none;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+      letter-spacing: -0.2px;
+    }
+
+    .main-navbar li a i {
+      font-size: 1.2rem;
+    }
+
+    /* brand styling */
+    .main-navbar li.brand-nav a {
+      font-weight: 700;
+      background: rgba(94,151,206,0.08);
+      padding: 0.6rem 1.2rem;
+      border-radius: 60px;
+      color: #2c3e50;
+    }
+    .main-navbar li.brand-nav a img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+    }
+
+    .main-navbar li.active a {
+      color: #1e709f;
+      background: rgba(94,151,206,0.12);
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 10px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .hori-selector {
+      position: absolute;
+      bottom: 1.5px;
+      left: 0;
+      height: 3px;
+      background: #3b82f6;
+      border-radius: 8px;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      z-index: 1;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* responsive: wrap nicely */
+    @media (max-width: 680px) {
+      .main-navbar {
+        justify-content: center;
+      }
+      .main-navbar li.brand-nav {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .main-navbar li a {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+      .hori-selector {
+        display: none;
+      }
+    }
+
+    /* ========== LAYOUT & CARDS ========== */
+    .page-contain {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .data-card {
+      background: #f4f7fc;
+      border-radius: 2rem;
+      padding: 2rem 2rem 2.2rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .data-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 40px -14px rgba(0,0,0,0.12);
+    }
+
+    .data-card h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #0f2b3d;
+      border-left: 5px solid #5E97CE;
+      padding-left: 1rem;
+      letter-spacing: -0.3px;
+    }
+
+    .data-card h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-top: 0.75rem;
+      color: #1e4663;
+    }
+
+    .data-card h4 {
+      font-weight: 500;
+      color: #4b6e8a;
+      margin-bottom: 1rem;
+    }
+
+    .bio p {
+      margin-bottom: 0.8rem;
+      color: #2d3e50;
+      font-weight: 450;
+    }
+
+    .profile {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 15px 25px -8px rgba(0,0,0,0.2);
+      margin: 0.5rem 0 1rem;
+    }
+
+    .troph {
+      width: 100px;
+      margin: 1rem 0;
+    }
+
+    .media {
+      display: flex;
+      gap: 1.4rem;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .media a {
+      background: #eef2f7;
+      border-radius: 60px;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #2c5a7a;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .media a:hover {
+      background: #5E97CE;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* skills list */
+    .data-card li {
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    /* skill bars */
+    .container {
+      background-color: #e9edf2;
+      border-radius: 40px;
+      width: 100%;
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .skill {
+      background-color: #5E97CE;
+      color: white;
+      padding: 0.35rem 0;
+      text-align: right;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 40px;
+      padding-right: 12px;
+      transition: width 0.4s ease;
+    }
+
+    .html { width: 58%; }
+    .php { width: 30%; }
+    .c { width: 67%; }
+    .csh { width: 20%; }
+    .java { width: 20%; }
+
+    label {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      display: inline-block;
+      color: #1e4663;
+    }
+
+    .certifs {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 0.6rem 1.3rem;
+      border-radius: 60px;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #1e6f9f;
+      transition: 0.2s;
+      border: 1px solid #cbdde9;
+    }
+
+    .certifs:hover {
+      background: #5E97CE;
+      color: white;
+      border-color: #5E97CE;
+    }
+
+    footer {
+      background: #1e2a3e;
+      margin-top: 3rem;
+      padding: 1rem 0;
+      text-align: center;
+      color: #bfd7e8;
+      font-size: 0.85rem;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+    }
+
+    .bottom_text p {
+      opacity: 0.8;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .skill-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-item label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .inline-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .list-styled li {
+      list-style: disc;
+      margin-left: 1.2rem;
+    }
+
+    @media (max-width: 560px) {
+      .data-card {
+        padding: 1.5rem;
+      }
+      .data-card h3 {
+        font-size: 1.4rem;
+      }
+    }
+
+    #about .data-card:not(:first-child) {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div id="navbar-animmenu">
+    <ul class="show-dropdown main-navbar">
+      <div class="hori-selector"></div>
+      <!-- BRAND ITEM: left side (margin-right: auto) -->
+      <li class="brand-nav">
+        <a href="#" id="brandHomeLink">
+          <img src="./images/favicon.ico" alt="jrunglo favicon" style="width:22px; height:22px; border-radius:4px;">
+          jrunglo
+        </a>
+      </li>
+      <!-- navigation items (right side) -->
+      <li><a href="#home"><i class="lni lni-home"></i>Home</a></li>
+      <li><a href="#about"><i class="lni lni-user"></i>About Me</a></li>
+      <li><a href="#gallery"><i class="lni lni-gallery"></i>Gallery</a></li>
+      <li><a href="#projects"><i class="lni lni-display"></i>My Projects</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- ========== ABOUT SECTION ========== -->
+  <section id="about" class="page-contain">
+    <div class="data-card">
+      <h3>About me .</h3>
+      <div class="centered"><img class="profile" src="./images/profile.png" alt="Jaru profile" onerror="this.src='https://placehold.co/150x150?text=Jaru'"></div>
+      <h2>Jaru Angelo D. Roces</h2>
+      <h4>Programmer / Developer</h4>
+      <div class="bio">
+        <div class="media">
+          <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener"><i class="lni lni-facebook"></i></a>
+          <a href="https://m.me/jaru.roces" target="_blank" rel="noopener"><i class="lni lni-facebook-messenger"></i></a>
+          <a href="mailto:jaru.roces@example.com"><i class="lni lni-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-card">
+      <h3>Introduction .</h3>
+      <div class="bio">
+        <p>Hi there! I'm Jaru Roces, 23 years old.</p>
+        <p>And currently a Computer Science graduate at Eulogio "Amang" Rodriguez Institute of Science and Technology.</p>
+        <p>I'm studying programming for almost 4 years and learned a lot of things.</p>
+      </div>
+    </div>
+
+    <div class="data-card">
+      <h3>My Skills .</h3>
+      <ul class="list-styled">
+        <li>Teamwork</li>
+        <li>Time Management</li>
+        <li>Web Development</li>
+        <li>Database and SQL</li>
+        <li>Ability to adapt to new technologies</li>
+      </ul>
+    </div>
+
+    <div class="data-card">
+      <h3>Knowledge</h3>
+      <div class="skill-item">
+        <label>HTML / CSS</label>
+        <div class="container"><div class="skill html">58%</div></div>
+      </div>
+      <div class="skill-item">
+        <label>PHP</label>
+        <div class="container"><div class="skill php">30%</div></div>
+      </div>
+      <div class="skill-item">
+        <label>C / C++</label>
+        <div class="container"><div class="skill c">67%</div></div>
+      </div>
+      <div class="skill-item">
+        <label>C#</label>
+        <div class="container"><div class="skill csh">20%</div></div>
+      </div>
+      <div class="skill-item">
+        <label>Java</label>
+        <div class="container"><div class="skill java">20%</div></div>
+      </div>
+    </div>
+
+    <div class="data-card">
+      <h3>Hobby .</h3>
+      <div class="centered"><img class="profile" src="./images/rubiks cube.gif" alt="rubik's cube gif" style="width:130px; height:130px; object-fit:cover;"></div>
+      <div class="bio">
+        <p>Solving rubik's cube is quite fun, I've been doing this hobby for almost 4 years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOME SECTION ========== -->
+  <section id="home" class="page-contain">
+    <div class="data-card">
+      <h3>Hey There!</h3>
+      <p>I built this site to compile all my personal projects, I just started to build this site on November 30 2022 .</p>
+      <p>It's fun and exciting, I hope that it will grow soon .</p>
+      <p>If you wanna know more about me, click <a href="#about" style="color:#3b82f6; font-weight:600;">here .</a></p>
+    </div>
+    <div class="data-card" style="margin-top: 2rem;">
+      <h3>What's more?</h3>
+      <p>As a Student, I want to learn more about programming .</p>
+      <p>You can check out my progress in learning at <a href="#gallery" style="color:#3b82f6; font-weight:600;">Gallery</a> section of this site .</p>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY / CERTIFICATES ========== -->
+  <section id="gallery" class="page-contain">
+    <div class="data-card">
+      <h3>My Certificates .</h3>
+      <div class="centered"><img class="troph" src="./images/dribbbletrophy.gif" alt="trophy animation"></div>
+      <p>Hi all, I have successfully completed the "Front End Development - HTML" and "PHP" course offered by Great Learning Academy .</p>
+      <p>Here are the certificates that I have received .</p>
+      <div class="inline-links">
+        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/JXGCCLEV" target="_blank" rel="noopener">📜 Front End Development - HTML</a>
+        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/CYMDYNKU" target="_blank" rel="noopener">📜 PHP Certificate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS SECTION ========== -->
+  <section id="projects" class="page-contain">
+    <div class="data-card">
+      <h3>Projects .</h3>
+      <div class="centered"><img class="profile" src="./images/sorry.png" alt="under construction" style="width:120px; border-radius: 20px;"></div>
+      <h2>Nothing to see here .</h2>
+      <h4>This site will be updated soon .</h4>
+      <p style="margin-top: 1rem;">✨ Meanwhile, check my certificates or get in touch — more projects coming! ✨</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="bottom_text">
+    <p>© <span id="current-year"></span> jrunglo. Built with dedication.</p>
+  </div>
+</footer>
+<script>
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  (function() {
+    // animated horizontal selector + active nav (only for right-side items, brand ignored)
+    const $navLinks = $('.main-navbar li').not('.brand-nav');
+    const $brandLink = $('.brand-nav');
+    const $selector = $('.hori-selector');
+    const sections = {
+      home: $('#home'),
+      about: $('#about'),
+      gallery: $('#gallery'),
+      projects: $('#projects')
+    };
+
+    function updateSelector(activeLi) {
+      if (!activeLi.length || activeLi.hasClass('brand-nav')) return;
+      const leftPos = activeLi.position().left;
+      const width = activeLi.outerWidth();
+      $selector.css({
+        left: leftPos,
+        width: width,
+        opacity: 1
+      });
+    }
+
+    function setActive(liElement) {
+      if (liElement.hasClass('brand-nav')) return;
+      $navLinks.removeClass('active');
+      liElement.addClass('active');
+      updateSelector(liElement);
+    }
+
+    function onScrollSpy() {
+      let currentSectionId = '';
+      const scrollPos = $(window).scrollTop() + 150;
+
+      for (const [id, $section] of Object.entries(sections)) {
+        if ($section.length) {
+          const offsetTop = $section.offset().top;
+          const offsetBottom = offsetTop + $section.outerHeight();
+          if (scrollPos >= offsetTop && scrollPos < offsetBottom) {
+            currentSectionId = id;
+            break;
+          }
+        }
+      }
+
+      if (!currentSectionId && $(window).scrollTop() + 50 < sections.home.offset().top) {
+        currentSectionId = 'home';
+      }
+
+      if (currentSectionId) {
+        const targetLink = $(`.main-navbar li a[href="#${currentSectionId}"]`).parent('li');
+        if (targetLink.length && !targetLink.hasClass('active') && !targetLink.hasClass('brand-nav')) {
+          setActive(targetLink);
+        }
+      } else {
+        if ($(window).scrollTop() < 100) {
+          const homeLink = $(`.main-navbar li a[href="#home"]`).parent('li');
+          if (homeLink.length && !homeLink.hasClass('active')) setActive(homeLink);
+        }
+      }
+    }
+
+    // click for regular nav items
+    $navLinks.on('click', function(e) {
+      const anchor = $(this).find('a').attr('href');
+      if (anchor && anchor.startsWith('#')) {
+        e.preventDefault();
+        const targetId = anchor.substring(1);
+        const targetSection = $('#' + targetId);
+        if (targetSection.length) {
+          $('html, body').animate({
+            scrollTop: targetSection.offset().top - 70
+          }, 400);
+          setActive($(this));
+        }
+      }
+    });
+
+    // brand click: scroll to top smoothly, remove any active underline, hide selector
+    $brandLink.on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({ scrollTop: 0 }, 400);
+      $navLinks.removeClass('active');
+      $selector.css({ opacity: 0 });
+    });
+
+    $(window).on('load', function() {
+      let defaultActive = $('.main-navbar li a[href="#home"]').parent('li');
+      if (defaultActive.length) {
+        setActive(defaultActive);
+        updateSelector(defaultActive);
+      } else {
+        $selector.css({ opacity: 0 });
+      }
+      onScrollSpy();
+    });
+
+    $(window).on('scroll resize', function() {
+      onScrollSpy();
+      const activeLi = $('.main-navbar li.active');
+      if (activeLi.length && !activeLi.hasClass('brand-nav')) {
+        updateSelector(activeLi);
+      } else if (!activeLi.length) {
+        $selector.css({ opacity: 0 });
+      }
+    });
+
+    $(document).ready(function() {
+      if ($('.main-navbar li.active').length === 0) {
+        const homeLi = $('.main-navbar li a[href="#home"]').parent('li');
+        if (homeLi.length) setActive(homeLi);
+      }
+      onScrollSpy();
+    });
+  })();
+</script>
+</body>
+</html>
