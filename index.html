@@ -42,22 +42,56 @@
 
     /* Desktop navigation links */
     .nav-menu li a {
-      transition: all 0.2s ease;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .nav-menu li a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(94, 151, 206, 0.2);
+      border-radius: inherit;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     .nav-menu li a:hover {
-      background: rgba(94, 151, 206, 0.25);
-      transform: translateY(-2px);
       color: #1e709f;
+      transform: translateY(-2px);
+    }
+    .nav-menu li a:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     /* Sidebar mobile nav links */
     .sidebar-nav .nav-link {
-      transition: all 0.2s ease;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    .sidebar-nav .nav-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(94, 151, 206, 0.18);
+      border-radius: inherit;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     .sidebar-nav .nav-link:hover {
-      background: rgba(94, 151, 206, 0.2);
-      transform: translateX(6px);
       color: #1e709f;
+      transform: translateX(6px);
+    }
+    .sidebar-nav .nav-link:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     /* Brand links (desktop + sidebar) */
@@ -208,12 +242,14 @@
       gap: 10px;
       font-weight: 700;
       font-size: 1.1rem;
-      background: rgba(94, 151, 206, 0.12);
-      padding: 0.55rem 1.3rem;
-      border-radius: 60px;
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      padding: 0.55rem 1.1rem;
+      border-radius: 14px;
       color: #1e4663;
       text-decoration: none;
       white-space: nowrap;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
     .nav-brand a img {
@@ -242,53 +278,65 @@
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.25rem;
       list-style: none;
       position: relative;
       margin: 0;
-      padding: 0;
+      padding: 0.22rem;
+      border-radius: 16px;
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+      overflow: hidden;
     }
 
     .nav-menu li {
       position: relative;
+      z-index: 1;
     }
 
     .nav-menu li a {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0.7rem 1.2rem;
+      padding: 0.7rem 1rem;
       font-weight: 600;
       font-size: 0.95rem;
-      color: #1f3a4b;
+      color: #495a6b;
       text-decoration: none;
-      border-radius: 60px;
+      border-radius: 12px;
       letter-spacing: -0.2px;
       white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      position: relative;
+      z-index: 2;
     }
 
     .nav-menu li a i {
       font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .nav-menu li:hover a {
+      color: #1f4d74;
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .nav-menu li.active a {
-      color: #1e709f;
-      background: rgba(94, 151, 206, 0.2);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      color: #1f4d74;
+      background: rgba(128, 177, 229, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(110, 160, 213, 0.22);
     }
 
     /* horizontal selector (desktop only) */
     .hori-selector {
       position: absolute;
-      bottom: 2px;
-      left: 0;
-      height: 3px;
-      background: #3b82f6;
-      border-radius: 8px;
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 2;
-      box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+      inset: 0 auto 0 0;
+      width: 0;
+      opacity: 0;
       pointer-events: none;
+      visibility: hidden;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
 
     /* ========== MOBILE SIDEBAR (RIGHT SIDE DRAWER) ========== */
@@ -326,9 +374,10 @@
       gap: 12px;
       font-weight: 700;
       font-size: 1.2rem;
-      background: rgba(94, 151, 206, 0.12);
-      padding: 0.6rem 1.3rem;
-      border-radius: 60px;
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      padding: 0.6rem 1.1rem;
+      border-radius: 14px;
       color: #1e4663;
       text-decoration: none;
       width: fit-content;
@@ -453,7 +502,7 @@
 
     .data-card {
       background: #ffffff;
-      border-radius: 2rem;
+      border-radius: 15px;
       padding: 2rem 1.8rem 2rem 1.8rem;
       box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
       border: 1px solid rgba(94, 151, 206, 0.1);
@@ -722,7 +771,7 @@
         <img class="profile" src="./images/profile.png" alt="Jaru Angelo profile" onerror="this.src='https://placehold.co/150x150?text=JARU'">
       </div>
       <h2>Jaru Angelo D. Roces</h2>
-      <h4>Programmer / Developer</h4>
+      <h4>Software Engineer / Web Developer</h4>
       <div class="bio">
         <div class="media">
           <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="lni lni-facebook"></i></a>
@@ -887,22 +936,11 @@
         $(`.nav-menu li a[href="${href}"]`).parent('li').addClass('active');
         $(`.sidebar-nav li a[href="${href}"]`).parent('li').addClass('active');
       }
-      if (!isMobileView()) {
-        const $activeDesktop = $('.nav-menu li.active');
-        if ($activeDesktop.length) updateSelector($activeDesktop);
-        else $selector.css({ opacity: 0 });
-      }
+      $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
     }
 
     function updateSelector(activeLi) {
-      if (isMobileView()) {
-        $selector.css({ opacity: 0, visibility: 'hidden' });
-        return;
-      }
-      if (!activeLi.length) { $selector.css({ opacity: 0 }); return; }
-      const leftPos = activeLi.position().left;
-      const width = activeLi.outerWidth();
-      $selector.css({ left: leftPos, width: width, opacity: 1, visibility: 'visible' });
+      $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
     }
 
     function updateScrollSpy() {
@@ -952,11 +990,9 @@
       if (!isMobileView()) {
         if ($mobileSidebar.hasClass('open')) closeSidebar();
         $desktopMenu.css('display', 'flex');
-        const $activeDesktop = $('.nav-menu li.active');
-        if ($activeDesktop.length) updateSelector($activeDesktop);
-        else $selector.css({ opacity: 0 });
+        $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
       } else {
-        $selector.css({ opacity: 0, visibility: 'hidden' });
+        $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
         $desktopMenu.css('display', 'none');
         if ($mobileSidebar.hasClass('open')) closeSidebar();
       }
@@ -971,8 +1007,7 @@
     $(window).on('scroll', () => {
       updateScrollSpy();
       if (!isMobileView()) {
-        const $activeDesktop = $('.nav-menu li.active');
-        if ($activeDesktop.length) updateSelector($activeDesktop);
+        $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
       }
     });
     $(window).on('resize', handleResize);
