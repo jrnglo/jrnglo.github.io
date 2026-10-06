@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <title>jrnglo</title>
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
@@ -21,141 +21,447 @@
       color: #1e2a3e;
       line-height: 1.5;
       scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ========== NAVBAR (brand left, items right) ========== */
+    /* ========== GLOBAL HOVER ANIMATIONS ========== */
+    a, button, .certifs, .media a, .nav-link, .hamburger, .sidebar-brand a, .nav-brand a {
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    /* Cards hover (already present, enhanced) */
+    .data-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s;
+    }
+    .data-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 45px -16px rgba(0, 0, 0, 0.15);
+      border-color: rgba(94, 151, 206, 0.3);
+    }
+
+    /* Desktop navigation links */
+    .nav-menu li a {
+      transition: all 0.2s ease;
+    }
+    .nav-menu li a:hover {
+      background: rgba(94, 151, 206, 0.25);
+      transform: translateY(-2px);
+      color: #1e709f;
+    }
+
+    /* Sidebar mobile nav links */
+    .sidebar-nav .nav-link {
+      transition: all 0.2s ease;
+    }
+    .sidebar-nav .nav-link:hover {
+      background: rgba(94, 151, 206, 0.2);
+      transform: translateX(6px);
+      color: #1e709f;
+    }
+
+    /* Brand links (desktop + sidebar) */
+    .nav-brand a:hover, .sidebar-brand a:hover {
+      background: rgba(94, 151, 206, 0.25);
+      transform: scale(1.02);
+      color: #0f3b55;
+    }
+
+    /* Hamburger button */
+    .hamburger:hover {
+      background: rgba(94, 151, 206, 0.35);
+      transform: scale(1.05);
+    }
+
+    /* Certificate buttons */
+    .certifs {
+      transition: all 0.25s ease;
+    }
+    .certifs:hover {
+      background: #5E97CE;
+      color: white;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 18px rgba(94, 151, 206, 0.3);
+      border-color: #5E97CE;
+    }
+
+    /* Social media icons */
+    .media a {
+      transition: all 0.25s ease;
+    }
+    .media a:hover {
+      background: #5E97CE;
+      color: white;
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Skill bar container hover (subtle glow) */
+    .container {
+      transition: box-shadow 0.2s;
+    }
+    .skill-item:hover .container {
+      box-shadow: 0 0 0 2px rgba(94, 151, 206, 0.2);
+    }
+
+    /* List items (skills & about) */
+    .list-styled li {
+      transition: transform 0.2s ease, color 0.2s;
+    }
+    .list-styled li:hover {
+      transform: translateX(6px);
+      color: #1e709f;
+    }
+    .list-styled li:hover::before {
+      color: #3b82f6;
+    }
+
+    /* Profile image hover */
+    .profile {
+      transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+    .profile:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Trophy image hover */
+    .troph {
+      transition: transform 0.2s;
+    }
+    .troph:hover {
+      transform: rotate(3deg) scale(1.05);
+    }
+
+    /* Hobby image hover */
+    .hobby-img {
+      transition: transform 0.3s ease;
+    }
+    .hobby-img:hover {
+      transform: rotate(2deg) scale(1.04);
+    }
+
+    /* Footer links (if any) */
+    footer a {
+      color: #bfd7e8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Internal content links (e.g., "here .") */
+    .data-card a:not(.certifs):not(.media a) {
+      transition: color 0.2s, border-bottom 0.2s;
+      border-bottom: 1px solid transparent;
+    }
+    .data-card a:not(.certifs):not(.media a):hover {
+      color: #1e6f9f !important;
+      border-bottom-color: #5E97CE;
+    }
+
+    /* ========== TYPOGRAPHY & FLUID SCALING ========== */
+    html {
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    /* ========== HEADER & TOP NAV (DESKTOP + MOBILE TOP BAR) ========== */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: #f4f7fc;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      border-bottom: 1px solid rgba(94,151,206,0.2);
+      background: rgba(244, 247, 252, 0.96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(94, 151, 206, 0.25);
     }
 
-    #navbar-animmenu {
-      max-width: 1200px;
+    .adaptive-nav {
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0.5rem 1.5rem;
-    }
-
-    .main-navbar {
+      padding: 0.6rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      list-style: none;
-      position: relative;
+      justify-content: space-between;
       flex-wrap: wrap;
-    }
-
-    /* brand item stays on left */
-    .main-navbar li.brand-nav {
-      margin-right: auto;
-    }
-
-    .main-navbar li {
       position: relative;
-      z-index: 2;
     }
 
-    .main-navbar li a {
+    /* brand */
+    .nav-brand a {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 0.75rem 1.4rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: #2c3e50;
-      text-decoration: none;
-      border-radius: 40px;
-      transition: all 0.2s ease;
-      letter-spacing: -0.2px;
-    }
-
-    .main-navbar li a i {
-      font-size: 1.2rem;
-    }
-
-    /* brand styling */
-    .main-navbar li.brand-nav a {
+      gap: 10px;
       font-weight: 700;
-      background: rgba(94,151,206,0.08);
-      padding: 0.6rem 1.2rem;
+      font-size: 1.1rem;
+      background: rgba(94, 151, 206, 0.12);
+      padding: 0.55rem 1.3rem;
       border-radius: 60px;
-      color: #2c3e50;
+      color: #1e4663;
+      text-decoration: none;
+      white-space: nowrap;
     }
-    .main-navbar li.brand-nav a img {
+
+    .nav-brand a img {
       width: 22px;
       height: 22px;
       object-fit: contain;
-      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
     }
 
-    .main-navbar li.active a {
+    /* hamburger button (mobile only) */
+    .hamburger {
+      display: none;
+      background: rgba(94, 151, 206, 0.15);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 40px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #1e4663;
+    }
+
+    /* desktop navigation menu (horizontal) */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      list-style: none;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu li {
+      position: relative;
+    }
+
+    .nav-menu li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1f3a4b;
+      text-decoration: none;
+      border-radius: 60px;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+
+    .nav-menu li a i {
+      font-size: 1.2rem;
+    }
+
+    .nav-menu li.active a {
       color: #1e709f;
-      background: rgba(94,151,206,0.12);
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 10px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 10px;
+      background: rgba(94, 151, 206, 0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
     }
 
+    /* horizontal selector (desktop only) */
     .hori-selector {
       position: absolute;
-      bottom: 1.5px;
+      bottom: 2px;
       left: 0;
       height: 3px;
       background: #3b82f6;
       border-radius: 8px;
       transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 1;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+      box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+      pointer-events: none;
     }
 
-    /* responsive: wrap nicely */
-    @media (max-width: 680px) {
-      .main-navbar {
-        justify-content: center;
-      }
-      .main-navbar li.brand-nav {
-        margin-right: 0;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 0.5rem;
-      }
-      .main-navbar li a {
+    /* ========== MOBILE SIDEBAR (RIGHT SIDE DRAWER) ========== */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100%;
+      background: rgba(244, 247, 252, 0.98);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(94, 151, 206, 0.3);
+      z-index: 1100;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0;
+      box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-brand {
+      padding: 0 1.5rem 1.8rem 1.8rem;
+      border-bottom: 1px solid rgba(94, 151, 206, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-brand a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: rgba(94, 151, 206, 0.12);
+      padding: 0.6rem 1.3rem;
+      border-radius: 60px;
+      color: #1e4663;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .sidebar-brand a img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0 1rem;
+    }
+
+    .sidebar-nav .nav-item {
+      list-style: none;
+    }
+
+    .sidebar-nav .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0.85rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #2c4c6e;
+      text-decoration: none;
+      border-radius: 60px;
+    }
+
+    .sidebar-nav .nav-link i {
+      font-size: 1.3rem;
+      width: 28px;
+    }
+
+    .sidebar-nav .nav-item.active .nav-link {
+      background: rgba(94, 151, 206, 0.2);
+      color: #1e709f;
+      border-right: 4px solid #3b82f6;
+      border-radius: 16px 60px 60px 16px;
+    }
+
+    /* overlay for mobile sidebar */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ========== RESPONSIVE: HIDE DESKTOP NAV ON MOBILE, SHOW RIGHT SIDEBAR TRIGGER ========== */
+    @media (max-width: 720px) {
+      .adaptive-nav {
         padding: 0.5rem 1rem;
-        font-size: 0.85rem;
       }
-      .hori-selector {
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-menu {
         display: none;
       }
+
+      body.sidebar-open {
+        overflow: hidden;
+      }
     }
 
-    /* ========== LAYOUT & CARDS ========== */
+    /* tablet adjustments for desktop nav */
+    @media (min-width: 721px) and (max-width: 1024px) {
+      .adaptive-nav {
+        padding: 0.5rem 1.2rem;
+      }
+      .nav-menu li a {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-brand a {
+        padding: 0.45rem 1rem;
+        font-size: 0.9rem;
+      }
+      .nav-brand a img {
+        width: 18px;
+        height: 18px;
+      }
+      .hamburger {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+      }
+      .mobile-sidebar {
+        width: 260px;
+      }
+    }
+
+    /* ========== MAIN LAYOUT (cards untouched) ========== */
     .page-contain {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+      max-width: 1100px;
+      margin: 1.8rem auto;
+      padding: 0 1.2rem;
     }
 
     .data-card {
-      background: #f4f7fc;
+      background: #ffffff;
       border-radius: 2rem;
-      padding: 2rem 2rem 2.2rem;
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .data-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 25px 40px -14px rgba(0,0,0,0.12);
+      padding: 2rem 1.8rem 2rem 1.8rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(94, 151, 206, 0.1);
+      margin-bottom: 2rem;
     }
 
     .data-card h3 {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 1.2rem;
       color: #0f2b3d;
@@ -165,9 +471,9 @@
     }
 
     .data-card h2 {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      margin-top: 0.75rem;
+      margin-top: 0.5rem;
       color: #1e4663;
     }
 
@@ -175,6 +481,7 @@
       font-weight: 500;
       color: #4b6e8a;
       margin-bottom: 1rem;
+      font-size: 1rem;
     }
 
     .bio p {
@@ -183,146 +490,138 @@
       font-weight: 450;
     }
 
+    .centered {
+      text-align: center;
+    }
+
     .profile {
       width: 150px;
       height: 150px;
       object-fit: cover;
       border-radius: 50%;
       border: 4px solid white;
-      box-shadow: 0 15px 25px -8px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.15);
       margin: 0.5rem 0 1rem;
+      max-width: 100%;
+      height: auto;
     }
 
     .troph {
-      width: 100px;
-      margin: 1rem 0;
+      width: 110px;
+      max-width: 100%;
+      margin: 0.5rem 0;
     }
 
     .media {
       display: flex;
-      gap: 1.4rem;
+      gap: 1.2rem;
       justify-content: center;
       margin-top: 1.2rem;
+      flex-wrap: wrap;
     }
 
     .media a {
       background: #eef2f7;
       border-radius: 60px;
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 1.6rem;
       color: #2c5a7a;
-      transition: 0.2s;
       text-decoration: none;
     }
 
-    .media a:hover {
-      background: #5E97CE;
-      color: white;
-      transform: scale(1.05);
+    .list-styled {
+      padding-left: 0;
+      list-style: none;
+    }
+    .list-styled li {
+      margin-bottom: 0.7rem;
+      padding-left: 1.5rem;
+      position: relative;
+      cursor: default;
+    }
+    .list-styled li::before {
+      content: "▹";
+      color: #5E97CE;
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      transition: transform 0.2s;
     }
 
-    /* skills list */
-    .data-card li {
-      margin-left: 1.5rem;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
+    .skill-item {
+      margin-bottom: 1.4rem;
     }
-
-    /* skill bars */
+    .skill-item label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #1e4663;
+      font-size: 0.9rem;
+    }
     .container {
       background-color: #e9edf2;
       border-radius: 40px;
       width: 100%;
-      margin: 0.5rem 0 0.2rem;
+      overflow: hidden;
     }
-
     .skill {
       background-color: #5E97CE;
       color: white;
       padding: 0.35rem 0;
       text-align: right;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       border-radius: 40px;
       padding-right: 12px;
-      transition: width 0.4s ease;
+      transition: width 0.3s ease;
+      width: 0%;
     }
-
     .html { width: 58%; }
     .php { width: 30%; }
     .c { width: 67%; }
     .csh { width: 20%; }
     .java { width: 20%; }
 
-    label {
-      font-weight: 600;
-      margin-top: 0.5rem;
-      display: inline-block;
-      color: #1e4663;
-    }
-
-    .certifs {
-      display: inline-block;
-      background: #eef2ff;
-      padding: 0.6rem 1.3rem;
-      border-radius: 60px;
-      margin-top: 1rem;
-      margin-right: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: #1e6f9f;
-      transition: 0.2s;
-      border: 1px solid #cbdde9;
-    }
-
-    .certifs:hover {
-      background: #5E97CE;
-      color: white;
-      border-color: #5E97CE;
-    }
-
-    footer {
-      background: #1e2a3e;
-      margin-top: 3rem;
-      padding: 1rem 0;
-      text-align: center;
-      color: #bfd7e8;
-      font-size: 0.85rem;
-      border-top-left-radius: 30px;
-      border-top-right-radius: 30px;
-    }
-
-    .bottom_text p {
-      opacity: 0.8;
-    }
-
-    .centered {
-      text-align: center;
-    }
-
-    .skill-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .skill-item label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
     .inline-links {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
+    }
+    .certifs {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 0.7rem 1.3rem;
+      border-radius: 60px;
+      margin-top: 0.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #1e6f9f;
+      border: 1px solid #cbdde9;
+      font-size: 0.85rem;
+      flex: 0 0 auto;
     }
 
-    .list-styled li {
-      list-style: disc;
-      margin-left: 1.2rem;
+    .hobby-img {
+      max-width: 130px;
+      width: auto;
+      height: auto;
+      border-radius: 28px;
+    }
+
+    footer {
+      background: #1e2a3e;
+      margin-top: 2rem;
+      padding: 1.5rem 0.8rem;
+      text-align: center;
+      color: #bfd7e8;
+      font-size: 0.8rem;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
     }
 
     @media (max-width: 560px) {
@@ -330,50 +629,105 @@
         padding: 1.5rem;
       }
       .data-card h3 {
+        font-size: 1.5rem;
+        padding-left: 0.8rem;
+      }
+      .profile {
+        width: 120px;
+        height: 120px;
+      }
+      .media a {
+        width: 44px;
+        height: 44px;
         font-size: 1.4rem;
+      }
+      .certifs {
+        padding: 0.55rem 1rem;
+        font-size: 0.8rem;
+        width: 100%;
+        text-align: center;
       }
     }
 
-    #about .data-card:not(:first-child) {
-      margin-top: 2rem;
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .page-contain {
+        max-width: 920px;
+        padding: 0 1.5rem;
+      }
+      .data-card {
+        padding: 2rem;
+      }
+    }
+
+    a, button, .certifs, .media a {
+      touch-action: manipulation;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .centered img {
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div id="navbar-animmenu">
-    <ul class="show-dropdown main-navbar">
-      <div class="hori-selector"></div>
-      <!-- BRAND ITEM: left side (margin-right: auto) -->
-      <li class="brand-nav">
-        <a href="#" id="brandHomeLink">
-          <img src="./images/favicon.ico" alt="jrunglo favicon" style="width:22px; height:22px; border-radius:4px;">
-          jrunglo
-        </a>
-      </li>
-      <!-- navigation items (right side) -->
+  <nav class="adaptive-nav">
+    <div class="nav-brand">
+      <a href="#" id="brandHomeLink">
+        <img src="./images/favicon.ico" alt="jrunglo brand icon" onerror="this.src='https://placehold.co/22x22?text=J'">
+        jrunglo
+      </a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-menu" id="navMenu">
       <li><a href="#home"><i class="lni lni-home"></i>Home</a></li>
       <li><a href="#about"><i class="lni lni-user"></i>About Me</a></li>
       <li><a href="#gallery"><i class="lni lni-gallery"></i>Gallery</a></li>
       <li><a href="#projects"><i class="lni lni-display"></i>My Projects</a></li>
+      <div class="hori-selector"></div>
     </ul>
-  </div>
+  </nav>
 </header>
 
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="sidebar-brand">
+    <a href="#" id="sidebarBrandLink">
+      <img src="./images/favicon.ico" alt="jrunglo" onerror="this.src='https://placehold.co/24x24?text=J'">
+      jrunglo
+    </a>
+  </div>
+  <ul class="sidebar-nav">
+    <li class="nav-item"><a class="nav-link" href="#home"><i class="lni lni-home"></i>Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="#about"><i class="lni lni-user"></i>About Me</a></li>
+    <li class="nav-item"><a class="nav-link" href="#gallery"><i class="lni lni-gallery"></i>Gallery</a></li>
+    <li class="nav-item"><a class="nav-link" href="#projects"><i class="lni lni-display"></i>My Projects</a></li>
+  </ul>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
 <main>
-  <!-- ========== ABOUT SECTION ========== -->
   <section id="about" class="page-contain">
     <div class="data-card">
       <h3>About me .</h3>
-      <div class="centered"><img class="profile" src="./images/profile.png" alt="Jaru profile" onerror="this.src='https://placehold.co/150x150?text=Jaru'"></div>
+      <div class="centered">
+        <img class="profile" src="./images/profile.png" alt="Jaru Angelo profile" onerror="this.src='https://placehold.co/150x150?text=JARU'">
+      </div>
       <h2>Jaru Angelo D. Roces</h2>
       <h4>Programmer / Developer</h4>
       <div class="bio">
         <div class="media">
-          <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener"><i class="lni lni-facebook"></i></a>
-          <a href="https://m.me/jaru.roces" target="_blank" rel="noopener"><i class="lni lni-facebook-messenger"></i></a>
-          <a href="mailto:jaru.roces@example.com"><i class="lni lni-envelope"></i></a>
+          <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="lni lni-facebook"></i></a>
+          <a href="https://m.me/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Messenger"><i class="lni lni-facebook-messenger"></i></a>
+          <a href="mailto:jaru.roces@example.com" aria-label="Email"><i class="lni lni-envelope"></i></a>
         </div>
       </div>
     </div>
@@ -382,7 +736,7 @@
       <h3>Introduction .</h3>
       <div class="bio">
         <p>Hi there! I'm Jaru Roces, 23 years old.</p>
-        <p>And currently a Computer Science graduate at Eulogio "Amang" Rodriguez Institute of Science and Technology.</p>
+        <p>Currently a Computer Science graduate at Eulogio "Amang" Rodriguez Institute of Science and Technology.</p>
         <p>I'm studying programming for almost 4 years and learned a lot of things.</p>
       </div>
     </div>
@@ -424,47 +778,50 @@
 
     <div class="data-card">
       <h3>Hobby .</h3>
-      <div class="centered"><img class="profile" src="./images/rubiks cube.gif" alt="rubik's cube gif" style="width:130px; height:130px; object-fit:cover;"></div>
+      <div class="centered">
+        <img class="profile hobby-img" src="./images/rubiks cube.gif" alt="rubik's cube animation" style="width:130px; height:130px; object-fit:cover; border-radius:50%;" onerror="this.src='https://placehold.co/130x130?text=Rubik'">
+      </div>
       <div class="bio">
         <p>Solving rubik's cube is quite fun, I've been doing this hobby for almost 4 years.</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== HOME SECTION ========== -->
   <section id="home" class="page-contain">
     <div class="data-card">
       <h3>Hey There!</h3>
       <p>I built this site to compile all my personal projects, I just started to build this site on November 30 2022 .</p>
       <p>It's fun and exciting, I hope that it will grow soon .</p>
-      <p>If you wanna know more about me, click <a href="#about" style="color:#3b82f6; font-weight:600;">here .</a></p>
+      <p>If you wanna know more about me, click <a href="#about" style="color:#3b82f6; font-weight:600; text-decoration:none;">here .</a></p>
     </div>
-    <div class="data-card" style="margin-top: 2rem;">
+    <div class="data-card">
       <h3>What's more?</h3>
       <p>As a Student, I want to learn more about programming .</p>
-      <p>You can check out my progress in learning at <a href="#gallery" style="color:#3b82f6; font-weight:600;">Gallery</a> section of this site .</p>
+      <p>You can check out my progress in learning at <a href="#gallery" style="color:#3b82f6; font-weight:600; text-decoration:none;">Gallery</a> section of this site .</p>
     </div>
   </section>
 
-  <!-- ========== GALLERY / CERTIFICATES ========== -->
   <section id="gallery" class="page-contain">
     <div class="data-card">
       <h3>My Certificates .</h3>
-      <div class="centered"><img class="troph" src="./images/dribbbletrophy.gif" alt="trophy animation"></div>
+      <div class="centered">
+        <img class="troph" src="./images/dribbbletrophy.gif" alt="trophy celebration" onerror="this.src='https://placehold.co/100x100?text=🏆'">
+      </div>
       <p>Hi all, I have successfully completed the "Front End Development - HTML" and "PHP" course offered by Great Learning Academy .</p>
       <p>Here are the certificates that I have received .</p>
       <div class="inline-links">
-        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/JXGCCLEV" target="_blank" rel="noopener">📜 Front End Development - HTML</a>
-        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/CYMDYNKU" target="_blank" rel="noopener">📜 PHP Certificate</a>
+        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/JXGCCLEV" target="_blank" rel="noopener noreferrer">📜 Front End Development - HTML</a>
+        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/CYMDYNKU" target="_blank" rel="noopener noreferrer">📜 PHP Certificate</a>
       </div>
     </div>
   </section>
 
-  <!-- ========== PROJECTS SECTION ========== -->
   <section id="projects" class="page-contain">
     <div class="data-card">
       <h3>Projects .</h3>
-      <div class="centered"><img class="profile" src="./images/sorry.png" alt="under construction" style="width:120px; border-radius: 20px;"></div>
+      <div class="centered">
+        <img src="./images/sorry.png" alt="under construction" style="max-width:120px; width:100%; border-radius: 24px;" onerror="this.src='https://placehold.co/120x120?text=🚧'">
+      </div>
       <h2>Nothing to see here .</h2>
       <h4>This site will be updated soon .</h4>
       <p style="margin-top: 1rem;">✨ Meanwhile, check my certificates or get in touch — more projects coming! ✨</p>
@@ -474,19 +831,24 @@
 
 <footer>
   <div class="bottom_text">
-    <p>© <span id="current-year"></span> jrunglo. Built with dedication.</p>
+    <p>© <span id="current-year"></span> jrunglo. Built with dedication & responsiveness.</p>
   </div>
 </footer>
-<script>
-  document.getElementById('current-year').textContent = new Date().getFullYear();
-</script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script>
   (function() {
-    // animated horizontal selector + active nav (only for right-side items, brand ignored)
-    const $navLinks = $('.main-navbar li').not('.brand-nav');
-    const $brandLink = $('.brand-nav');
+    const $desktopMenu = $('#navMenu');
+    const $desktopMenuItems = $('.nav-menu li');
+    const $mobileSidebar = $('#mobileSidebar');
+    const $mobileNavItems = $('.sidebar-nav .nav-item');
+    const $allNavItems = $desktopMenuItems.add($mobileNavItems);
+    const $brandLink = $('#brandHomeLink');
+    const $sidebarBrandLink = $('#sidebarBrandLink');
+    const $hamburger = $('#hamburgerBtn');
+    const $overlay = $('#drawerOverlay');
     const $selector = $('.hori-selector');
+    
     const sections = {
       home: $('#home'),
       about: $('#about'),
@@ -494,109 +856,148 @@
       projects: $('#projects')
     };
 
+    let isMobileView = () => window.innerWidth <= 720;
+
+    function openSidebar() {
+      if (!isMobileView()) return;
+      $mobileSidebar.addClass('open');
+      $overlay.addClass('active');
+      $('body').addClass('sidebar-open');
+      $hamburger.attr('aria-expanded', 'true');
+    }
+
+    function closeSidebar() {
+      $mobileSidebar.removeClass('open');
+      $overlay.removeClass('active');
+      $('body').removeClass('sidebar-open');
+      $hamburger.attr('aria-expanded', 'false');
+    }
+
+    function toggleSidebar() {
+      if ($mobileSidebar.hasClass('open')) closeSidebar();
+      else openSidebar();
+    }
+
+    function setActiveNavItem($li) {
+      if (!$li.length) return;
+      $allNavItems.removeClass('active');
+      $li.addClass('active');
+      const href = $li.find('a').attr('href');
+      if (href) {
+        $(`.nav-menu li a[href="${href}"]`).parent('li').addClass('active');
+        $(`.sidebar-nav li a[href="${href}"]`).parent('li').addClass('active');
+      }
+      if (!isMobileView()) {
+        const $activeDesktop = $('.nav-menu li.active');
+        if ($activeDesktop.length) updateSelector($activeDesktop);
+        else $selector.css({ opacity: 0 });
+      }
+    }
+
     function updateSelector(activeLi) {
-      if (!activeLi.length || activeLi.hasClass('brand-nav')) return;
+      if (isMobileView()) {
+        $selector.css({ opacity: 0, visibility: 'hidden' });
+        return;
+      }
+      if (!activeLi.length) { $selector.css({ opacity: 0 }); return; }
       const leftPos = activeLi.position().left;
       const width = activeLi.outerWidth();
-      $selector.css({
-        left: leftPos,
-        width: width,
-        opacity: 1
-      });
+      $selector.css({ left: leftPos, width: width, opacity: 1, visibility: 'visible' });
     }
 
-    function setActive(liElement) {
-      if (liElement.hasClass('brand-nav')) return;
-      $navLinks.removeClass('active');
-      liElement.addClass('active');
-      updateSelector(liElement);
-    }
-
-    function onScrollSpy() {
-      let currentSectionId = '';
-      const scrollPos = $(window).scrollTop() + 150;
-
+    function updateScrollSpy() {
+      let currentId = '';
+      const scrollPos = $(window).scrollTop() + 120;
       for (const [id, $section] of Object.entries(sections)) {
         if ($section.length) {
           const offsetTop = $section.offset().top;
           const offsetBottom = offsetTop + $section.outerHeight();
-          if (scrollPos >= offsetTop && scrollPos < offsetBottom) {
-            currentSectionId = id;
-            break;
-          }
+          if (scrollPos >= offsetTop && scrollPos < offsetBottom) { currentId = id; break; }
         }
       }
-
-      if (!currentSectionId && $(window).scrollTop() + 50 < sections.home.offset().top) {
-        currentSectionId = 'home';
+      if (!currentId && $(window).scrollTop() + 80 < sections.home.offset().top) currentId = 'home';
+      if (currentId) {
+        const $targetLink = $(`.nav-link[href="#${currentId}"]`).parent('.nav-item');
+        if ($targetLink.length && !$targetLink.hasClass('active')) setActiveNavItem($targetLink);
+      } else if ($(window).scrollTop() < 100) {
+        const $homeLink = $(`.nav-link[href="#home"]`).parent('.nav-item');
+        if ($homeLink.length) setActiveNavItem($homeLink);
       }
+    }
 
-      if (currentSectionId) {
-        const targetLink = $(`.main-navbar li a[href="#${currentSectionId}"]`).parent('li');
-        if (targetLink.length && !targetLink.hasClass('active') && !targetLink.hasClass('brand-nav')) {
-          setActive(targetLink);
-        }
-      } else {
-        if ($(window).scrollTop() < 100) {
-          const homeLink = $(`.main-navbar li a[href="#home"]`).parent('li');
-          if (homeLink.length && !homeLink.hasClass('active')) setActive(homeLink);
+    function handleNavClick(e) {
+      const anchor = $(this).attr('href');
+      if (anchor && anchor.startsWith('#')) {
+        e.preventDefault();
+        const targetId = anchor.substring(1);
+        const $targetSection = $('#' + targetId);
+        if ($targetSection.length) {
+          closeSidebar();
+          $('html, body').animate({ scrollTop: $targetSection.offset().top - 70 }, 420);
+          const $parentLi = $(this).parent('.nav-item');
+          setActiveNavItem($parentLi);
         }
       }
     }
 
-    // click for regular nav items
-    $navLinks.on('click', function(e) {
-      const anchor = $(this).find('a').attr('href');
-      if (anchor && anchor.startsWith('#')) {
-        e.preventDefault();
-        const targetId = anchor.substring(1);
-        const targetSection = $('#' + targetId);
-        if (targetSection.length) {
-          $('html, body').animate({
-            scrollTop: targetSection.offset().top - 70
-          }, 400);
-          setActive($(this));
-        }
-      }
-    });
-
-    // brand click: scroll to top smoothly, remove any active underline, hide selector
-    $brandLink.on('click', function(e) {
+    function handleBrandClick(e) {
       e.preventDefault();
+      closeSidebar();
       $('html, body').animate({ scrollTop: 0 }, 400);
-      $navLinks.removeClass('active');
-      $selector.css({ opacity: 0 });
-    });
+      const $homeLink = $(`.nav-link[href="#home"]`).parent('.nav-item');
+      if ($homeLink.length) setActiveNavItem($homeLink);
+    }
 
-    $(window).on('load', function() {
-      let defaultActive = $('.main-navbar li a[href="#home"]').parent('li');
-      if (defaultActive.length) {
-        setActive(defaultActive);
-        updateSelector(defaultActive);
+    function handleResize() {
+      if (!isMobileView()) {
+        if ($mobileSidebar.hasClass('open')) closeSidebar();
+        $desktopMenu.css('display', 'flex');
+        const $activeDesktop = $('.nav-menu li.active');
+        if ($activeDesktop.length) updateSelector($activeDesktop);
+        else $selector.css({ opacity: 0 });
       } else {
-        $selector.css({ opacity: 0 });
+        $selector.css({ opacity: 0, visibility: 'hidden' });
+        $desktopMenu.css('display', 'none');
+        if ($mobileSidebar.hasClass('open')) closeSidebar();
       }
-      onScrollSpy();
-    });
+      updateScrollSpy();
+    }
 
-    $(window).on('scroll resize', function() {
-      onScrollSpy();
-      const activeLi = $('.main-navbar li.active');
-      if (activeLi.length && !activeLi.hasClass('brand-nav')) {
-        updateSelector(activeLi);
-      } else if (!activeLi.length) {
-        $selector.css({ opacity: 0 });
+    $('.nav-menu .nav-link, .sidebar-nav .nav-link').on('click', handleNavClick);
+    $brandLink.on('click', handleBrandClick);
+    $sidebarBrandLink.on('click', handleBrandClick);
+    $hamburger.on('click', toggleSidebar);
+    $overlay.on('click', closeSidebar);
+    $(window).on('scroll', () => {
+      updateScrollSpy();
+      if (!isMobileView()) {
+        const $activeDesktop = $('.nav-menu li.active');
+        if ($activeDesktop.length) updateSelector($activeDesktop);
       }
     });
-
-    $(document).ready(function() {
-      if ($('.main-navbar li.active').length === 0) {
-        const homeLi = $('.main-navbar li a[href="#home"]').parent('li');
-        if (homeLi.length) setActive(homeLi);
-      }
-      onScrollSpy();
+    $(window).on('resize', handleResize);
+    $(document).ready(() => {
+      const $defaultActive = $(`.nav-link[href="#home"]`).parent('.nav-item');
+      if ($defaultActive.length) setActiveNavItem($defaultActive);
+      updateScrollSpy();
+      handleResize();
+      $('a[href^="#"]').not('.nav-link, .certifs').on('click', function(e) {
+        const target = $(this).attr('href');
+        if (target && target !== '#') {
+          const $targetEl = $(target);
+          if ($targetEl.length) {
+            e.preventDefault();
+            closeSidebar();
+            $('html, body').animate({ scrollTop: $targetEl.offset().top - 70 }, 400);
+            const sectionId = target.substring(1);
+            const $navLink = $(`.nav-link[href="#${sectionId}"]`).parent('.nav-item');
+            if ($navLink.length) setActiveNavItem($navLink);
+          }
+        }
+      });
     });
   })();
+  document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
