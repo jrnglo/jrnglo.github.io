@@ -8,881 +8,135 @@
   <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f4f7fc;
-      color: #1e2a3e;
-      line-height: 1.5;
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ========== GLOBAL HOVER ANIMATIONS ========== */
-    a, button, .certifs, .media a, .nav-link, .hamburger, .sidebar-brand a, .nav-brand a {
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-
-    /* Cards hover (already present, enhanced) */
-    .data-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s;
-    }
-    .data-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 45px -16px rgba(0, 0, 0, 0.15);
-      border-color: rgba(94, 151, 206, 0.3);
-    }
-
-    /* Desktop navigation links */
-    .nav-menu li a {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      transition: color 0.25s ease, transform 0.25s ease;
-    }
-    .nav-menu li a::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: rgba(94, 151, 206, 0.2);
-      border-radius: inherit;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-    .nav-menu li a:hover {
-      color: #1e709f;
-      transform: translateY(-2px);
-    }
-    .nav-menu li a:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    /* Sidebar mobile nav links */
-    .sidebar-nav .nav-link {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      transition: color 0.25s ease, transform 0.25s ease;
-    }
-    .sidebar-nav .nav-link::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: rgba(94, 151, 206, 0.18);
-      border-radius: inherit;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-    .sidebar-nav .nav-link:hover {
-      color: #1e709f;
-      transform: translateX(6px);
-    }
-    .sidebar-nav .nav-link:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    /* Brand links (desktop + sidebar) */
-    .nav-brand a:hover, .sidebar-brand a:hover {
-      background: rgba(94, 151, 206, 0.25);
-      transform: scale(1.02);
-      color: #0f3b55;
-    }
-
-    /* Hamburger button */
-    .hamburger:hover {
-      background: rgba(94, 151, 206, 0.35);
-      transform: scale(1.05);
-    }
-
-    /* Certificate buttons */
-    .certifs {
-      transition: all 0.25s ease;
-    }
-    .certifs:hover {
-      background: #5E97CE;
-      color: white;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 18px rgba(94, 151, 206, 0.3);
-      border-color: #5E97CE;
-    }
-
-    /* Social media icons */
-    .media a {
-      transition: all 0.25s ease;
-    }
-    .media a:hover {
-      background: #5E97CE;
-      color: white;
-      transform: translateY(-4px) scale(1.08);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Skill bar container hover (subtle glow) */
-    .container {
-      transition: box-shadow 0.2s;
-    }
-    .skill-item:hover .container {
-      box-shadow: 0 0 0 2px rgba(94, 151, 206, 0.2);
-    }
-
-    /* List items (skills & about) */
-    .list-styled li {
-      transition: transform 0.2s ease, color 0.2s;
-    }
-    .list-styled li:hover {
-      transform: translateX(6px);
-      color: #1e709f;
-    }
-    .list-styled li:hover::before {
-      color: #3b82f6;
-    }
-
-    /* Profile image hover */
-    .profile {
-      transition: transform 0.3s ease, box-shadow 0.3s;
-    }
-    .profile:hover {
-      transform: scale(1.03);
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Trophy image hover */
-    .troph {
-      transition: transform 0.2s;
-    }
-    .troph:hover {
-      transform: rotate(3deg) scale(1.05);
-    }
-
-    /* Hobby image hover */
-    .hobby-img {
-      transition: transform 0.3s ease;
-    }
-    .hobby-img:hover {
-      transform: rotate(2deg) scale(1.04);
-    }
-
-    /* Footer links (if any) */
-    footer a {
-      color: #bfd7e8;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    footer a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    /* Internal content links (e.g., "here .") */
-    .data-card a:not(.certifs):not(.media a) {
-      transition: color 0.2s, border-bottom 0.2s;
-      border-bottom: 1px solid transparent;
-    }
-    .data-card a:not(.certifs):not(.media a):hover {
-      color: #1e6f9f !important;
-      border-bottom-color: #5E97CE;
-    }
-
-    /* ========== TYPOGRAPHY & FLUID SCALING ========== */
-    html {
-      font-size: 16px;
-    }
-
-    @media (max-width: 768px) {
-      html {
-        font-size: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      html {
-        font-size: 14px;
-      }
-    }
-
-    /* ========== HEADER & TOP NAV (DESKTOP + MOBILE TOP BAR) ========== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(244, 247, 252, 0.96);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      border-bottom: 1px solid rgba(94, 151, 206, 0.25);
-    }
-
-    .adaptive-nav {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0.6rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      position: relative;
-    }
-
-    /* brand */
-    .nav-brand a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      background: rgba(148, 163, 184, 0.08);
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      padding: 0.55rem 1.1rem;
-      border-radius: 14px;
-      color: #1e4663;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .nav-brand a img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
-    }
-
-    /* hamburger button (mobile only) */
-    .hamburger {
-      display: none;
-      background: rgba(94, 151, 206, 0.15);
-      border: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 40px;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.6rem;
-      color: #1e4663;
-    }
-
-    /* desktop navigation menu (horizontal) */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      list-style: none;
-      position: relative;
-      margin: 0;
-      padding: 0.22rem;
-      border-radius: 16px;
-      background: rgba(148, 163, 184, 0.08);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-      overflow: hidden;
-    }
-
-    .nav-menu li {
-      position: relative;
-      z-index: 1;
-    }
-
-    .nav-menu li a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0.7rem 1rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: #495a6b;
-      text-decoration: none;
-      border-radius: 12px;
-      letter-spacing: -0.2px;
-      white-space: nowrap;
-      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-      position: relative;
-      z-index: 2;
-    }
-
-    .nav-menu li a i {
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-
-    .nav-menu li:hover a {
-      color: #1f4d74;
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .nav-menu li.active a {
-      color: #1f4d74;
-      background: rgba(128, 177, 229, 0.12);
-      box-shadow: inset 0 0 0 1px rgba(110, 160, 213, 0.22);
-    }
-
-    /* horizontal selector (desktop only) */
-    .hori-selector {
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 0;
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-
-    /* ========== MOBILE SIDEBAR (RIGHT SIDE DRAWER) ========== */
-    .mobile-sidebar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 280px;
-      height: 100%;
-      background: rgba(244, 247, 252, 0.98);
-      backdrop-filter: blur(20px);
-      border-left: 1px solid rgba(94, 151, 206, 0.3);
-      z-index: 1100;
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 0;
-      box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .mobile-sidebar.open {
-      transform: translateX(0);
-    }
-
-    .sidebar-brand {
-      padding: 0 1.5rem 1.8rem 1.8rem;
-      border-bottom: 1px solid rgba(94, 151, 206, 0.2);
-      margin-bottom: 2rem;
-    }
-
-    .sidebar-brand a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      background: rgba(148, 163, 184, 0.08);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      padding: 0.6rem 1.1rem;
-      border-radius: 14px;
-      color: #1e4663;
-      text-decoration: none;
-      width: fit-content;
-    }
-
-    .sidebar-brand a img {
-      width: 24px;
-      height: 24px;
-    }
-
-    .sidebar-nav {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 0 1rem;
-    }
-
-    .sidebar-nav .nav-item {
-      list-style: none;
-    }
-
-    .sidebar-nav .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0.85rem 1.2rem;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #2c4c6e;
-      text-decoration: none;
-      border-radius: 60px;
-    }
-
-    .sidebar-nav .nav-link i {
-      font-size: 1.3rem;
-      width: 28px;
-    }
-
-    .sidebar-nav .nav-item.active .nav-link {
-      background: rgba(94, 151, 206, 0.2);
-      color: #1e709f;
-      border-right: 4px solid #3b82f6;
-      border-radius: 16px 60px 60px 16px;
-    }
-
-    /* overlay for mobile sidebar */
-    .drawer-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(2px);
-      z-index: 1050;
-      opacity: 0;
-      visibility: hidden;
-      transition: 0.2s;
-    }
-
-    .drawer-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* ========== RESPONSIVE: HIDE DESKTOP NAV ON MOBILE, SHOW RIGHT SIDEBAR TRIGGER ========== */
-    @media (max-width: 720px) {
-      .adaptive-nav {
-        padding: 0.5rem 1rem;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .nav-menu {
-        display: none;
-      }
-
-      body.sidebar-open {
-        overflow: hidden;
-      }
-    }
-
-    /* tablet adjustments for desktop nav */
-    @media (min-width: 721px) and (max-width: 1024px) {
-      .adaptive-nav {
-        padding: 0.5rem 1.2rem;
-      }
-      .nav-menu li a {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-brand a {
-        padding: 0.45rem 1rem;
-        font-size: 0.9rem;
-      }
-      .nav-brand a img {
-        width: 18px;
-        height: 18px;
-      }
-      .hamburger {
-        width: 40px;
-        height: 40px;
-        font-size: 1.4rem;
-      }
-      .mobile-sidebar {
-        width: 260px;
-      }
-    }
-
-    /* ========== MAIN LAYOUT (cards untouched) ========== */
-    .page-contain {
-      max-width: 1100px;
-      margin: 1.8rem auto;
-      padding: 0 1.2rem;
-    }
-
-    .data-card {
-      background: #ffffff;
-      border-radius: 15px;
-      padding: 2rem 1.8rem 2rem 1.8rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(94, 151, 206, 0.1);
-      margin-bottom: 2rem;
-    }
-
-    .data-card h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-      color: #0f2b3d;
-      border-left: 5px solid #5E97CE;
-      padding-left: 1rem;
-      letter-spacing: -0.3px;
-    }
-
-    .data-card h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-top: 0.5rem;
-      color: #1e4663;
-    }
-
-    .data-card h4 {
-      font-weight: 500;
-      color: #4b6e8a;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .bio p {
-      margin-bottom: 0.8rem;
-      color: #2d3e50;
-      font-weight: 450;
-    }
-
-    .centered {
-      text-align: center;
-    }
-
-    .profile {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.15);
-      margin: 0.5rem 0 1rem;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .troph {
-      width: 110px;
-      max-width: 100%;
-      margin: 0.5rem 0;
-    }
-
-    .media {
-      display: flex;
-      gap: 1.2rem;
-      justify-content: center;
-      margin-top: 1.2rem;
-      flex-wrap: wrap;
-    }
-
-    .media a {
-      background: #eef2f7;
-      border-radius: 60px;
-      width: 48px;
-      height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      color: #2c5a7a;
-      text-decoration: none;
-    }
-
-    .list-styled {
-      padding-left: 0;
-      list-style: none;
-    }
-    .list-styled li {
-      margin-bottom: 0.7rem;
-      padding-left: 1.5rem;
-      position: relative;
-      cursor: default;
-    }
-    .list-styled li::before {
-      content: "▹";
-      color: #5E97CE;
-      position: absolute;
-      left: 0;
-      font-weight: 600;
-      transition: transform 0.2s;
-    }
-
-    .skill-item {
-      margin-bottom: 1.4rem;
-    }
-    .skill-item label {
-      display: block;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-      color: #1e4663;
-      font-size: 0.9rem;
-    }
-    .container {
-      background-color: #e9edf2;
-      border-radius: 40px;
-      width: 100%;
-      overflow: hidden;
-    }
-    .skill {
-      background-color: #5E97CE;
-      color: white;
-      padding: 0.35rem 0;
-      text-align: right;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border-radius: 40px;
-      padding-right: 12px;
-      transition: width 0.3s ease;
-      width: 0%;
-    }
-    .html { width: 58%; }
-    .php { width: 30%; }
-    .c { width: 67%; }
-    .csh { width: 20%; }
-    .java { width: 20%; }
-
-    .inline-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.2rem;
-    }
-    .certifs {
-      display: inline-block;
-      background: #eef2ff;
-      padding: 0.7rem 1.3rem;
-      border-radius: 60px;
-      margin-top: 0.5rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: #1e6f9f;
-      border: 1px solid #cbdde9;
-      font-size: 0.85rem;
-      flex: 0 0 auto;
-    }
-
-    .hobby-img {
-      max-width: 130px;
-      width: auto;
-      height: auto;
-      border-radius: 28px;
-    }
-
-    footer {
-      background: #1e2a3e;
-      margin-top: 2rem;
-      padding: 1.5rem 0.8rem;
-      text-align: center;
-      color: #bfd7e8;
-      font-size: 0.8rem;
-      border-top-left-radius: 30px;
-      border-top-right-radius: 30px;
-    }
-
-    @media (max-width: 560px) {
-      .data-card {
-        padding: 1.5rem;
-      }
-      .data-card h3 {
-        font-size: 1.5rem;
-        padding-left: 0.8rem;
-      }
-      .profile {
-        width: 120px;
-        height: 120px;
-      }
-      .media a {
-        width: 44px;
-        height: 44px;
-        font-size: 1.4rem;
-      }
-      .certifs {
-        padding: 0.55rem 1rem;
-        font-size: 0.8rem;
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .page-contain {
-        max-width: 920px;
-        padding: 0 1.5rem;
-      }
-      .data-card {
-        padding: 2rem;
-      }
-    }
-
-    a, button, .certifs, .media a {
-      touch-action: manipulation;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .centered img {
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/nav-style.css">
 </head>
 <body>
 
-<header>
-  <nav class="adaptive-nav">
-    <div class="nav-brand">
-      <a href="#" id="brandHomeLink">
-        <img src="./images/favicon.ico" alt="jrunglo brand icon" onerror="this.src='https://placehold.co/22x22?text=J'">
-        jrunglo
-      </a>
-    </div>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
-      <i class="fas fa-bars"></i>
-    </button>
+<div class="site-shell">
+<aside class="profile-panel" aria-label="Profile">
+  <img class="profile-panel-image" src="./images/profile.png" alt="Jaru Angelo profile">
+  <h1>Jaru Angelo D. Roces</h1>
+  <p class="profile-role">Software Engineer / Web Developer</p>
+  <div class="profile-socials">
+    <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://github.com/jaru-roces" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="mailto:jaru.roces@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+  <a class="profile-contact" href="mailto:jaru.roces@example.com"><i class="fa-solid fa-envelope"></i> Let's connect</a>
+</aside>
+<div class="site-content">
+<header class="site-header">
+  <a class="site-brand" href="#about" aria-label="Jaru Roces portfolio">jrnglo<span>.</span></a>
+  <nav aria-label="Main navigation">
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#home"><i class="lni lni-home"></i>Home</a></li>
-      <li><a href="#about"><i class="lni lni-user"></i>About Me</a></li>
-      <li><a href="#gallery"><i class="lni lni-gallery"></i>Gallery</a></li>
-      <li><a href="#projects"><i class="lni lni-display"></i>My Projects</a></li>
-      <div class="hori-selector"></div>
+      <li class="active"><a class="nav-link" href="#about" aria-current="page">About</a></li>
+      <li><a class="nav-link" href="#resume">Resume</a></li>
+      <li><a class="nav-link" href="#projects">Projects</a></li>
+      <li><a class="nav-link" href="#lab">Lab</a></li>
     </ul>
   </nav>
 </header>
 
-<div class="mobile-sidebar" id="mobileSidebar">
-  <div class="sidebar-brand">
-    <a href="#" id="sidebarBrandLink">
-      <img src="./images/favicon.ico" alt="jrunglo" onerror="this.src='https://placehold.co/24x24?text=J'">
-      jrunglo
-    </a>
-  </div>
-  <ul class="sidebar-nav">
-    <li class="nav-item"><a class="nav-link" href="#home"><i class="lni lni-home"></i>Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="#about"><i class="lni lni-user"></i>About Me</a></li>
-    <li class="nav-item"><a class="nav-link" href="#gallery"><i class="lni lni-gallery"></i>Gallery</a></li>
-    <li class="nav-item"><a class="nav-link" href="#projects"><i class="lni lni-display"></i>My Projects</a></li>
-  </ul>
-</div>
-<div class="drawer-overlay" id="drawerOverlay"></div>
-
 <main>
-  <section id="about" class="page-contain">
-    <div class="data-card">
-      <h3>About me .</h3>
-      <div class="centered">
-        <img class="profile" src="./images/profile.png" alt="Jaru Angelo profile" onerror="this.src='https://placehold.co/150x150?text=JARU'">
+  <section id="about" class="page-contain is-active">
+    <div class="section-heading">
+      <h1>About</h1>
+      <p>I'm Jaru Angelo D. Roces. I enjoy learning and turning ideas into practical software.</p>
+    </div>
+    <section class="about-services" aria-labelledby="what-i-do-heading">
+      <h2 id="what-i-do-heading">What I Do</h2>
+      <div class="service-grid">
+        <article class="service-item">
+          <span class="service-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+          <div><h3>Web Development</h3><p>Building and refining responsive websites and practical web experiences.</p></div>
+        </article>
+        <article class="service-item">
+          <span class="service-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></span>
+          <div><h3>Databases &amp; SQL</h3><p>Working with structured data and database fundamentals.</p></div>
+        </article>
+        <article class="service-item">
+          <span class="service-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></span>
+          <div><h3>Teamwork</h3><p>Collaborating with others to move shared work forward.</p></div>
+        </article>
+        <article class="service-item">
+          <span class="service-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+          <div><h3>Time Management</h3><p>Organizing tasks and staying focused on priorities.</p></div>
+        </article>
+        <article class="service-item">
+          <span class="service-icon" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <div><h3>Adaptability</h3><p>Learning new tools and adapting to changing technology.</p></div>
+        </article>
       </div>
-      <h2>Jaru Angelo D. Roces</h2>
-      <h4>Software Engineer / Web Developer</h4>
-      <div class="bio">
-        <div class="media">
-          <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="lni lni-facebook"></i></a>
-          <a href="https://m.me/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Messenger"><i class="lni lni-facebook-messenger"></i></a>
-          <a href="mailto:jaru.roces@example.com" aria-label="Email"><i class="lni lni-envelope"></i></a>
+    </section>
+  </section>
+
+  <section id="resume" class="page-contain" hidden>
+    <div class="section-heading compact-heading">
+      <h1>Resume</h1>
+    </div>
+    <div class="resume-grid">
+      <section class="resume-column" aria-labelledby="education-heading">
+        <h2 id="education-heading">Education</h2>
+        <article class="resume-entry">
+          <h3>Computer Science</h3>
+          <p class="entry-meta">Eulogio “Amang” Rodriguez Institute of Science and Technology</p>
+        </article>
+        <section class="resume-subsection" aria-labelledby="certifications-heading">
+          <h2 id="certifications-heading">Certifications</h2>
+          <p class="resume-intro">Great Learning Academy</p>
+          <ul class="resume-list">
+            <li><a href="https://olympus1.mygreatlearning.com/course_certificate/JXGCCLEV" target="_blank" rel="noopener noreferrer">Front End Development - HTML</a></li>
+            <li><a href="https://olympus1.mygreatlearning.com/course_certificate/CYMDYNKU" target="_blank" rel="noopener noreferrer">PHP Certificate</a></li>
+          </ul>
+        </section>
+      </section>
+      <section class="resume-column" aria-labelledby="technical-skills-heading">
+        <h2 id="technical-skills-heading">Technical Skills</h2>
+        <p class="resume-intro">Technologies and programming languages from my learning experience.</p>
+        <div class="skill-tags" aria-label="Technical skills">
+          <span>HTML / CSS</span><span>PHP</span><span>C / C++</span><span>C#</span><span>Java</span>
         </div>
-      </div>
-    </div>
-
-    <div class="data-card">
-      <h3>Introduction .</h3>
-      <div class="bio">
-        <p>Hi there! I'm Jaru Roces, 23 years old.</p>
-        <p>Currently a Computer Science graduate at Eulogio "Amang" Rodriguez Institute of Science and Technology.</p>
-        <p>I'm studying programming for almost 4 years and learned a lot of things.</p>
-      </div>
-    </div>
-
-    <div class="data-card">
-      <h3>My Skills .</h3>
-      <ul class="list-styled">
-        <li>Teamwork</li>
-        <li>Time Management</li>
-        <li>Web Development</li>
-        <li>Database and SQL</li>
-        <li>Ability to adapt to new technologies</li>
-      </ul>
-    </div>
-
-    <div class="data-card">
-      <h3>Knowledge</h3>
-      <div class="skill-item">
-        <label>HTML / CSS</label>
-        <div class="container"><div class="skill html">58%</div></div>
-      </div>
-      <div class="skill-item">
-        <label>PHP</label>
-        <div class="container"><div class="skill php">30%</div></div>
-      </div>
-      <div class="skill-item">
-        <label>C / C++</label>
-        <div class="container"><div class="skill c">67%</div></div>
-      </div>
-      <div class="skill-item">
-        <label>C#</label>
-        <div class="container"><div class="skill csh">20%</div></div>
-      </div>
-      <div class="skill-item">
-        <label>Java</label>
-        <div class="container"><div class="skill java">20%</div></div>
-      </div>
-    </div>
-
-    <div class="data-card">
-      <h3>Hobby .</h3>
-      <div class="centered">
-        <img class="profile hobby-img" src="./images/rubiks cube.gif" alt="rubik's cube animation" style="width:130px; height:130px; object-fit:cover; border-radius:50%;" onerror="this.src='https://placehold.co/130x130?text=Rubik'">
-      </div>
-      <div class="bio">
-        <p>Solving rubik's cube is quite fun, I've been doing this hobby for almost 4 years.</p>
-      </div>
+      </section>
     </div>
   </section>
 
-  <section id="home" class="page-contain">
-    <div class="data-card">
-      <h3>Hey There!</h3>
-      <p>I built this site to compile all my personal projects, I just started to build this site on November 30 2022 .</p>
-      <p>It's fun and exciting, I hope that it will grow soon .</p>
-      <p>If you wanna know more about me, click <a href="#about" style="color:#3b82f6; font-weight:600; text-decoration:none;">here .</a></p>
+  <section id="projects" class="page-contain" hidden>
+    <div class="section-heading">
+      <h1>Projects</h1>
+      <p>A selection of work and experiments will be added here.</p>
     </div>
-    <div class="data-card">
-      <h3>What's more?</h3>
-      <p>As a Student, I want to learn more about programming .</p>
-      <p>You can check out my progress in learning at <a href="#gallery" style="color:#3b82f6; font-weight:600; text-decoration:none;">Gallery</a> section of this site .</p>
-    </div>
-  </section>
-
-  <section id="gallery" class="page-contain">
-    <div class="data-card">
-      <h3>My Certificates .</h3>
-      <div class="centered">
-        <img class="troph" src="./images/dribbbletrophy.gif" alt="trophy celebration" onerror="this.src='https://placehold.co/100x100?text=🏆'">
-      </div>
-      <p>Hi all, I have successfully completed the "Front End Development - HTML" and "PHP" course offered by Great Learning Academy .</p>
-      <p>Here are the certificates that I have received .</p>
-      <div class="inline-links">
-        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/JXGCCLEV" target="_blank" rel="noopener noreferrer">📜 Front End Development - HTML</a>
-        <a class="certifs" href="https://olympus1.mygreatlearning.com/course_certificate/CYMDYNKU" target="_blank" rel="noopener noreferrer">📜 PHP Certificate</a>
-      </div>
+    <div class="projects-empty">
+      <span class="projects-empty-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+      <h2>Projects in progress</h2>
+      <p>I'm working on adding project details and previews. Check back soon.</p>
+      <a href="https://github.com/jrnglo" target="_blank" rel="noopener noreferrer">Visit my GitHub <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
   </section>
 
-  <section id="projects" class="page-contain">
-    <div class="data-card">
-      <h3>Projects .</h3>
-      <div class="centered">
-        <img src="./images/sorry.png" alt="under construction" style="max-width:120px; width:100%; border-radius: 24px;" onerror="this.src='https://placehold.co/120x120?text=🚧'">
-      </div>
-      <h2>Nothing to see here .</h2>
-      <h4>This site will be updated soon .</h4>
-      <p style="margin-top: 1rem;">✨ Meanwhile, check my certificates or get in touch — more projects coming! ✨</p>
+    <section id="lab" class="page-contain" hidden>
+    <div class="section-heading">
+      <h1>Lab</h1>
+      <p>A selection of work and experiments will be added here.</p>
+    </div>
+    <div class="projects-empty">
+      <span class="projects-empty-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+      <h2>Lab in progress</h2>
+      <p>I'm working on adding lab details and previews. Check back soon.</p>
+      <a href="https://github.com/jrnglo" target="_blank" rel="noopener noreferrer">Visit my GitHub <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="bottom_text">
-    <p>© <span id="current-year"></span> jrunglo. Built with dedication & responsiveness.</p>
+  <p>© <span id="current-year"></span> Jaru Angelo D. Roces</p>
+  <div class="footer-socials">
+    <a href="https://github.com/jrnglo" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.facebook.com/jaru.roces" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="mailto:jaru.roces@example.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
   </div>
 </footer>
+</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script>
@@ -892,20 +146,36 @@
     const $mobileSidebar = $('#mobileSidebar');
     const $mobileNavItems = $('.sidebar-nav .nav-item');
     const $allNavItems = $desktopMenuItems.add($mobileNavItems);
-    const $brandLink = $('#brandHomeLink');
+    const $brandLink = $('.site-brand');
     const $sidebarBrandLink = $('#sidebarBrandLink');
     const $hamburger = $('#hamburgerBtn');
     const $overlay = $('#drawerOverlay');
     const $selector = $('.hori-selector');
     
-    const sections = {
-      home: $('#home'),
-      about: $('#about'),
-      gallery: $('#gallery'),
-      projects: $('#projects')
-    };
+    const $sections = $('main > .page-contain');
+    const sections = new Set($sections.map((_, section) => section.id).get());
 
     let isMobileView = () => window.innerWidth <= 720;
+
+    function showSection(id) {
+      if (!sections.has(id)) return;
+
+      $sections.each(function() {
+        const isActive = this.id === id;
+        this.hidden = !isActive;
+        this.classList.toggle('is-active', isActive);
+      });
+
+      const href = `#${id}`;
+      $allNavItems.removeClass('active');
+      $(`.nav-menu a[href="${href}"], .sidebar-nav a[href="${href}"]`)
+        .attr('aria-current', 'page')
+        .parent('li')
+        .addClass('active');
+      $allNavItems.not($(`.nav-menu a[href="${href}"], .sidebar-nav a[href="${href}"]`).parent('li'))
+        .find('a')
+        .removeAttr('aria-current');
+    }
 
     function openSidebar() {
       if (!isMobileView()) return;
@@ -927,63 +197,22 @@
       else openSidebar();
     }
 
-    function setActiveNavItem($li) {
-      if (!$li.length) return;
-      $allNavItems.removeClass('active');
-      $li.addClass('active');
-      const href = $li.find('a').attr('href');
-      if (href) {
-        $(`.nav-menu li a[href="${href}"]`).parent('li').addClass('active');
-        $(`.sidebar-nav li a[href="${href}"]`).parent('li').addClass('active');
-      }
-      $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
-    }
-
-    function updateSelector(activeLi) {
-      $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
-    }
-
-    function updateScrollSpy() {
-      let currentId = '';
-      const scrollPos = $(window).scrollTop() + 120;
-      for (const [id, $section] of Object.entries(sections)) {
-        if ($section.length) {
-          const offsetTop = $section.offset().top;
-          const offsetBottom = offsetTop + $section.outerHeight();
-          if (scrollPos >= offsetTop && scrollPos < offsetBottom) { currentId = id; break; }
-        }
-      }
-      if (!currentId && $(window).scrollTop() + 80 < sections.home.offset().top) currentId = 'home';
-      if (currentId) {
-        const $targetLink = $(`.nav-link[href="#${currentId}"]`).parent('.nav-item');
-        if ($targetLink.length && !$targetLink.hasClass('active')) setActiveNavItem($targetLink);
-      } else if ($(window).scrollTop() < 100) {
-        const $homeLink = $(`.nav-link[href="#home"]`).parent('.nav-item');
-        if ($homeLink.length) setActiveNavItem($homeLink);
-      }
-    }
-
     function handleNavClick(e) {
       const anchor = $(this).attr('href');
-      if (anchor && anchor.startsWith('#')) {
-        e.preventDefault();
-        const targetId = anchor.substring(1);
-        const $targetSection = $('#' + targetId);
-        if ($targetSection.length) {
-          closeSidebar();
-          $('html, body').animate({ scrollTop: $targetSection.offset().top - 70 }, 420);
-          const $parentLi = $(this).parent('.nav-item');
-          setActiveNavItem($parentLi);
-        }
-      }
+      if (!anchor || !anchor.startsWith('#')) return;
+
+      const targetId = anchor.substring(1);
+      if (!sections.has(targetId)) return;
+
+      e.preventDefault();
+      closeSidebar();
+      showSection(targetId);
     }
 
     function handleBrandClick(e) {
       e.preventDefault();
       closeSidebar();
-      $('html, body').animate({ scrollTop: 0 }, 400);
-      const $homeLink = $(`.nav-link[href="#home"]`).parent('.nav-item');
-      if ($homeLink.length) setActiveNavItem($homeLink);
+      showSection('about');
     }
 
     function handleResize() {
@@ -996,40 +225,19 @@
         $desktopMenu.css('display', 'none');
         if ($mobileSidebar.hasClass('open')) closeSidebar();
       }
-      updateScrollSpy();
     }
 
-    $('.nav-menu .nav-link, .sidebar-nav .nav-link').on('click', handleNavClick);
+    $('.nav-menu a[href^="#"], .sidebar-nav a[href^="#"]').on('click', handleNavClick);
+    $('main a[href^="#"]').on('click', handleNavClick);
     $brandLink.on('click', handleBrandClick);
     $sidebarBrandLink.on('click', handleBrandClick);
     $hamburger.on('click', toggleSidebar);
     $overlay.on('click', closeSidebar);
-    $(window).on('scroll', () => {
-      updateScrollSpy();
-      if (!isMobileView()) {
-        $selector.css({ opacity: 0, visibility: 'hidden', width: 0 });
-      }
-    });
     $(window).on('resize', handleResize);
     $(document).ready(() => {
-      const $defaultActive = $(`.nav-link[href="#home"]`).parent('.nav-item');
-      if ($defaultActive.length) setActiveNavItem($defaultActive);
-      updateScrollSpy();
+      const initialSection = window.location.hash.substring(1);
+      showSection(sections.has(initialSection) ? initialSection : 'about');
       handleResize();
-      $('a[href^="#"]').not('.nav-link, .certifs').on('click', function(e) {
-        const target = $(this).attr('href');
-        if (target && target !== '#') {
-          const $targetEl = $(target);
-          if ($targetEl.length) {
-            e.preventDefault();
-            closeSidebar();
-            $('html, body').animate({ scrollTop: $targetEl.offset().top - 70 }, 400);
-            const sectionId = target.substring(1);
-            const $navLink = $(`.nav-link[href="#${sectionId}"]`).parent('.nav-item');
-            if ($navLink.length) setActiveNavItem($navLink);
-          }
-        }
-      });
     });
   })();
   document.getElementById('current-year').textContent = new Date().getFullYear();

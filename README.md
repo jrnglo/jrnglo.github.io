@@ -1,21 +1,20 @@
 # Jaru Angelo D. Roces Personal Website
 
-A responsive personal portfolio website built with HTML, CSS, and vanilla JavaScript. The site presents information about Jaru Roces, including an about section, skills, certifications, gallery, projects, and contact links.
+A responsive personal portfolio website built with HTML, CSS, and JavaScript. The site presents Jaru Roces's profile, education, certifications, technical skills, and project status.
 
 ## Features
 
-- Responsive layout for desktop, tablet, and mobile devices
-- Sticky navigation with mobile menu
-- Smooth scrolling and animated page elements
-- Portfolio sections for about, gallery, skills, and projects
+- Responsive dark layout with desktop and mobile navigation
+- Portfolio sections for About, Resume, and Projects
+- Education, certifications, and technical skills in the resume
 - Social media and email links
 - Dynamic copyright year
 
 ## Project structure
 
-- `index.html` — page structure and embedded site content
-- `style.css` — shared site stylesheet
-- `css/style.css`, `css/style2.css`, and `css/style3.css` — additional stylesheet variants
+- `index.html` — page structure, content, and scripts
+- `css/nav-style.css` — stylesheet loaded by the page for navigation and layout
+- `css/style.css` — alternate component styles, not currently loaded by the page
 - `script.js` — JavaScript compatibility file
 - `images/` — profile, gallery, icons, and other assets
 
@@ -40,7 +39,7 @@ Then visit `http://localhost:8000`.
 ## Customize the website
 
 - Update the profile name, biography, and social links in `index.html`.
-- Change colors, spacing, typography, and layout in `style.css` or the stylesheet variants.
+- Change the active colors, spacing, typography, and layout in `css/nav-style.css`.
 - Replace images in `images/` while keeping the same file names or update their references in `index.html`.
 - Adjust the portfolio content, certifications, and project links in the relevant sections of `index.html`.
 
@@ -51,4 +50,3 @@ Upload the project files to any static hosting provider, such as GitHub Pages, N
 ## License
 
 This project is provided for personal and educational use. Contact the owner before reusing or distributing the content for commercial purposes.
-
