@@ -1606,25 +1606,25 @@
     }
 
     .compact-heading {
-      padding-bottom: 26px;
+      padding-bottom: 16px;
     }
 
     .resume-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 36px;
+      gap: 24px;
     }
 
     .resume-column > h2,
     .resume-subsection > h2 {
-      margin: 0 0 14px;
+      margin: 0 0 9px;
       color: var(--accent-strong);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
     }
 
     .resume-entry h3 {
-      margin: 0 0 5px;
+      margin: 0 0 3px;
       color: var(--text-primary);
       font-size: 1rem;
     }
@@ -1633,25 +1633,25 @@
     .resume-intro,
     .resume-list li {
       color: #c1cad5;
-      font-size: 0.85rem;
-      line-height: 1.65;
+      font-size: 0.82rem;
+      line-height: 1.5;
     }
 
     .resume-entry .entry-meta {
-      margin: 0 0 8px;
+      margin: 0 0 5px;
       color: #9eabb9;
       font-weight: 600;
     }
 
     .resume-subsection {
-      margin-top: 24px;
+      margin-top: 16px;
     }
 
     .resume-list {
       display: grid;
-      gap: 12px;
+      gap: 6px;
       margin: 0;
-      padding-left: 18px;
+      padding-left: 16px;
     }
 
     .resume-list li a {
@@ -1671,23 +1671,34 @@
     }
 
     .resume-intro {
-      margin: -5px 0 12px;
+      margin: -3px 0 8px;
     }
 
     .skill-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
+    }
+
+    .skill-group + .skill-group {
+      margin-top: 12px;
+    }
+
+    .skill-group > h3 {
+      margin: 0 0 5px;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-weight: 650;
     }
 
     .skill-tags span {
-      padding: 5px 11px;
+      padding: 4px 9px;
       border: 1px solid rgba(152, 174, 195, 0.12);
       border-radius: 999px;
       background: rgba(133, 153, 176, 0.1);
       color: #aebbc9;
       font-family: monospace;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
 
     .projects-empty {
@@ -1817,7 +1828,7 @@
       }
 
       .resume-grid {
-        gap: 28px;
+        gap: 16px;
       }
 
       footer {
@@ -1879,8 +1890,9 @@
     .profile-panel-banner {
       position: relative;
       align-self: stretch;
-      height: 140px;
-      flex: 0 0 140px;
+      height: auto;
+      flex: 0 0 auto;
+      aspect-ratio: 5 / 2;
       overflow: hidden;
       margin: -30px -22px 0;
       border-radius: 17px 17px 0 0;
@@ -1953,18 +1965,7 @@
       }
     }
 
-    .profile-maze-status {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-    }
-
-    .profile-panel > :not(.profile-panel-banner):not(.profile-maze-status) {
+    .profile-panel > :not(.profile-panel-banner) {
       position: relative;
       z-index: 1;
     }
@@ -2520,4 +2521,236 @@
     .footer-socials a:focus-visible {
       outline: 2px solid #777777;
       outline-offset: 3px;
+    }
+
+    @media (max-width: 800px) {
+      html,
+      body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .site-shell {
+        display: flex;
+        width: min(100% - 24px, 680px);
+        height: auto;
+        min-height: 0;
+        flex-direction: column;
+        gap: 14px;
+        margin: 12px auto;
+        padding: 0;
+        overflow: visible;
+      }
+
+      .profile-panel {
+        position: relative;
+        top: auto;
+        height: auto;
+        min-height: 0;
+        align-items: flex-start;
+        padding: 0 16px 16px;
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .profile-panel-banner {
+        height: auto;
+        flex-basis: auto;
+        aspect-ratio: 5 / 2;
+        margin: 0 -16px;
+        border-radius: 17px 17px 0 0;
+      }
+
+      .profile-panel-image {
+        width: 110px;
+        height: 110px;
+        align-self: flex-start;
+        margin: -52.5px 0 12px 8px;
+      }
+
+      .profile-panel h1,
+      .profile-role,
+      .profile-socials {
+        text-align: left;
+      }
+
+      .profile-panel h1 {
+        font-size: 19.2px;
+      }
+
+      .profile-role {
+        margin-top: 8px;
+        margin-bottom: 18px;
+        font-size: 14.08px;
+      }
+
+      .profile-socials {
+        justify-content: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .profile-contact {
+        width: 100%;
+        margin-top: 4px;
+      }
+
+      .site-content {
+        flex: none;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .site-content > .site-header {
+        position: sticky;
+        top: 8px;
+        z-index: 10;
+        display: flex;
+        min-height: 56px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin: -1px -1px 0;
+        padding: 8px 12px;
+        border-radius: 17px 17px 0 0;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+      }
+
+      .site-brand {
+        display: block;
+        flex: 0 0 auto;
+        color: #292929;
+        font-size: 1.05rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .site-brand span {
+        color: #555555;
+      }
+
+      .site-header nav {
+        width: auto;
+        min-width: 0;
+        flex: 1 1 auto;
+        margin: 0;
+      }
+
+      .nav-menu {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 2px;
+      }
+
+      .nav-menu li a {
+        min-height: 36px;
+        padding: 6px 8px;
+        font-size: 0.78rem;
+      }
+
+      main {
+        display: block;
+        flex: none;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      main > .page-contain,
+      main > .page-contain.is-active {
+        min-height: 0;
+        padding: 22px 18px 28px;
+        overflow: visible;
+      }
+
+      main > .page-contain.is-active {
+        display: block;
+      }
+
+      main > .page-contain[hidden] {
+        display: none !important;
+      }
+
+      .section-heading {
+        padding-bottom: 22px;
+      }
+
+      .compact-heading {
+        padding-bottom: 12px;
+      }
+
+      .section-heading h1 {
+        margin-bottom: 16px;
+        font-size: 1.3rem;
+      }
+
+      .section-heading > p {
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+
+      .about-services {
+        margin: 0 -18px;
+        padding: 18px;
+      }
+
+      .about-services > h2 {
+        margin-bottom: 12px;
+      }
+
+      .service-grid,
+      .resume-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .service-item {
+        min-height: 76px;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .service-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+      }
+
+      .resume-grid {
+        gap: 16px;
+      }
+
+      .projects-empty {
+        min-height: 220px;
+        padding: 22px 18px;
+      }
+
+      footer {
+        padding: 12px 16px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .site-shell {
+        width: calc(100% - 16px);
+        margin: 8px auto;
+      }
+
+      .site-content > .site-header {
+        gap: 4px;
+        padding-right: 8px;
+        padding-left: 8px;
+      }
+
+      .site-brand {
+        font-size: 0.98rem;
+      }
+
+      .nav-menu li a {
+        padding-right: 6px;
+        padding-left: 6px;
+        font-size: 0.72rem;
+      }
     }
