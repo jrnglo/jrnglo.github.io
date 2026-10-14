@@ -2610,9 +2610,9 @@
         display: flex;
         min-height: 56px;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 8px;
-        margin: -1px -1px 0;
+        margin: 0;
         padding: 8px 12px;
         border-radius: 17px 17px 0 0;
         background: rgba(255, 255, 255, 0.96);
@@ -2620,28 +2620,19 @@
       }
 
       .site-brand {
-        display: block;
-        flex: 0 0 auto;
-        color: #292929;
-        font-size: 1.05rem;
-        font-weight: 700;
-        text-decoration: none;
-      }
-
-      .site-brand span {
-        color: #555555;
+        display: none;
       }
 
       .site-header nav {
-        width: auto;
+        width: 100%;
         min-width: 0;
-        flex: 1 1 auto;
+        flex: 0 1 auto;
         margin: 0;
       }
 
       .nav-menu {
         width: 100%;
-        justify-content: flex-end;
+        justify-content: center;
         gap: 2px;
       }
 
