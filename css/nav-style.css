@@ -1870,39 +1870,135 @@
       height: calc(100vh - 48px);
       min-height: 520px;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       padding: 30px 22px;
-      text-align: center;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .profile-panel-banner {
+      position: relative;
+      align-self: stretch;
+      height: 140px;
+      flex: 0 0 140px;
+      overflow: hidden;
+      margin: -30px -22px 0;
+      border-radius: 17px 17px 0 0;
+      appearance: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: transparent;
+      cursor: pointer;
+      font: inherit;
+      text-align: inherit;
+      touch-action: manipulation;
+      transition: none;
+    }
+
+    .profile-panel-banner svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .profile-panel-banner:focus-visible {
+      outline: 1px solid var(--accent-strong);
+      outline-offset: -2px;
+    }
+
+    .profile-maze-walls,
+    .profile-maze-trail {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .profile-maze-walls {
+      stroke: rgba(55, 86, 119, 0.32);
+      stroke-width: 1.15;
+    }
+
+    .profile-maze-trail {
+      stroke: var(--accent-strong, #333);
+      stroke-width: 3;
+      opacity: 0.68;
+      transition: opacity 500ms ease-out;
+    }
+
+    .profile-maze-trail.is-fading,
+    .profile-maze-dot.is-fading {
+      opacity: 0;
+    }
+
+    .profile-maze-exit {
+      fill: #ffffff;
+      stroke: var(--accent-strong);
+      stroke-width: 0.9;
+    }
+
+.profile-maze-dot {
+  opacity: 1;
+  fill: var(--accent-strong, #333);
+  stroke: #ffffff;
+  stroke-width: 1;
+  r: 5;
+  transition: opacity 1.8s ease-out;
+}
+
+    @media (prefers-reduced-motion: reduce) {
+      .profile-maze-trail,
+      .profile-maze-dot {
+        transition: none;
+      }
+    }
+
+    .profile-maze-status {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .profile-panel > :not(.profile-panel-banner):not(.profile-maze-status) {
+      position: relative;
+      z-index: 1;
     }
 
     .profile-panel-image {
-      width: 136px;
-      height: 136px;
-      margin: 8px 0 18px;
-      border: 3px solid rgba(94, 151, 206, 0.55);
+      width: 96px;
+      height: 96px;
+      align-self: flex-start;
+      margin: -48px 0 12px 8px;
+      border: 4px solid #ffffff;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 12px 28px rgba(30, 42, 62, 0.12);
+      pointer-events: none;
     }
 
     .profile-panel h1 {
-      margin: 0;
+      margin: 0 0 0 8px;
       color: var(--text-primary);
       font-size: 1.2rem;
       line-height: 1.35;
     }
 
     .profile-role {
-      margin: 8px 0 18px;
+      margin: 8px 0 18px 8px;
       color: var(--text-muted);
       font-size: 0.88rem;
     }
 
     .profile-socials {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 12px;
-      margin-bottom: 20px;
+      margin: 0 0 20px 8px;
     }
 
     .profile-socials a {
@@ -2132,24 +2228,30 @@
       }
 
       .profile-panel {
-        position: static;
+        position: relative;
         height: auto;
         min-height: 0;
         padding: 18px;
       }
 
+      .profile-panel-banner {
+        height: 124px;
+        flex-basis: 124px;
+        margin: -18px -18px 0;
+      }
+
       .profile-panel-image {
-        width: 96px;
-        height: 96px;
-        margin: 0 0 10px;
+        width: 84px;
+        height: 84px;
+        margin: -42px 0 10px 6px;
       }
 
       .profile-role {
-        margin: 6px 0 10px;
+        margin: 6px 0 10px 6px;
       }
 
       .profile-socials {
-        margin-bottom: 10px;
+        margin: 0 0 10px 6px;
       }
 
       .profile-contact {

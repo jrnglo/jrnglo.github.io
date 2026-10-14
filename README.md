@@ -5,6 +5,7 @@ A responsive personal portfolio website built with HTML, CSS, and JavaScript. Th
 ## Features
 
 - Responsive dark layout with desktop and mobile navigation
+- Interactive profile maze: a minimalist maze with shortcuts and routes that favor short distances and fewer turns; the dot starts at a random edge or corner and travels to one of four exits, where it fades out; it bounces off the profile photo, and its trail fades before a new search begins
 - Portfolio sections for About, Resume, and Projects
 - Education, certifications, and technical skills in the resume
 - Social media and email links
@@ -15,7 +16,7 @@ A responsive personal portfolio website built with HTML, CSS, and JavaScript. Th
 - `index.html` — page structure, content, and scripts
 - `css/nav-style.css` — stylesheet loaded by the page for navigation and layout
 - `css/style.css` — alternate component styles, not currently loaded by the page
-- `script.js` — JavaScript compatibility file
+- `script.js` — interactive profile maze solver
 - `images/` — profile, gallery, icons, and other assets
 
 ## Run locally

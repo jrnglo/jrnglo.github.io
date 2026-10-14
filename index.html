@@ -9,11 +9,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/nav-style.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
 
 <div class="site-shell">
 <aside class="profile-panel" aria-label="Profile">
+  <button class="profile-panel-banner" type="button" aria-label="A minimalist maze with shortcuts and routes that favor short distances and fewer turns. The dot starts at a random edge or corner and travels to an exit. It bounces off the profile photo. Click to move it or use the arrow keys to steer it." title="Click anywhere in the maze to move the dot">
+    <svg viewBox="0 0 600 240" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="profile-maze-walls" />
+      <g class="profile-maze-trails"></g>
+      <g class="profile-maze-exits"></g>
+      <g class="profile-maze-dots"></g>
+    </svg>
+  </button>
+  <span class="profile-maze-status" role="status" aria-live="polite">The minimalist maze favors short routes with fewer turns. A dot starts at a random edge or corner and travels to an exit. It bounces off the profile photo. Click to reposition it or use the arrow keys to steer it.</span>
   <img class="profile-panel-image" src="./images/profile.png" alt="Jaru Angelo profile">
   <h1>Jaru Angelo D. Roces</h1>
   <p class="profile-role">Software Engineer / Web Developer</p>
